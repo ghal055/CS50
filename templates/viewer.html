@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Viewer
+{% endblock %}
+
+{% block main %}
+
+        <form action="/viewer" method="POST">
+
+            <input type="hidden" id="storyname" name="storyname" value="{{ storyname }}">
+            <input type="hidden" id="cardname" name="cardname" value="{{ cardname }}">
+            <input type="hidden" id="storyid" name="storyid" value="{{ storyid }}">
+            <input type="hidden" id="cardtext" name="cardtext" value="{{ cardtext }}">
+            <input type="hidden" id="FROM" name="FROM" value="VIEWER">
+            <div class="p-3 mb-2 bg-primary text-white">
+                <h1>Story: {{ storyname }}</h1>
+            </div>
+            <div class="p-3 mb-2 bg-light text-dark">
+                <p><strong>{{ cardname }}</p></strong>
+                <p><textarea readonly rows="20" cols="120" name="cardtext" id="cardtext">{{ cardtext }}</textarea></p>
+                {% if counter > 0 %}
+                <p><strong>Choices:</strong></p>
+                <p>
+                    <ul>
+                        {% for n in range(0, counter) %}
+                            <li><input type="submit" name="submit" value={{n}} style="background:none; border-width:0px; color:blue; text-decoration:underline;"/>{{ children[n] }}</li>
+                            <input type="hidden" name="{{n}}" value="{{ children[n] }}">
+                        {% endfor %}
+                    </ul>
+                </p>
+                {% else %}
+                    <p><strong>END</strong></p>
+                {% endif %}
+            </div>
+        </form>
+{% endblock %}

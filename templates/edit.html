@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Edit story</h1>
+        <form action="/edit" method="post">
+            <select class="form-control" name="stories">
+            <option disabled selected value>Your Stories:</option>
+                {% for userstory in userstories %}
+                    <option>{{ userstory['storyname'] }}</option>
+                {% endfor %}
+            </select>
+        <button class="btn btn-primary" type="submit">Go</button>
+        </form>
+    </div>
+{% endblock %}

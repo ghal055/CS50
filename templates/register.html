@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <label for="username">Choose a username: </label><br/>
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+            <label for="username" id="list">{{ data }}</label>
+        </div>
+        <div class="form-group">
+            <label for="password">Choose a password: </label><br/>
+            <input class="form-control" name="password" placeholder="Password" type="password"><br/>
+            <label for="password">Re-enter your password: </label><br/>
+            <input class="form-control" name="confirmation" placeholder="Confirm password" type="password">
+        </div>
+        <button class="btn btn-primary" id='submit' type="submit">Register</button>
+    </form>
+
+    <script>
+
+        let input = document.getElementById('username');
+        input.onkeyup = function() {
+            $.get('/check?username=' + input.value, function(data) {
+                if (!data) {
+                    document.getElementById('list').innerHTML = "Username is taken.";
+                    document.getElementById('submit').addEventListener("click", add)
+                }
+                else if (data) {
+                    document.getElementById('list').innerHTML = "Username is available!";
+                    document.getElementById('submit').removeEventListener("click", add)
+                }
+            });
+        };
+
+    function add(event){
+                        event.preventDefault()
+    }
+    </script>
+
+{% endblock %}

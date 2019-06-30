@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Create a story</h1>
+        <form action="/create" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" id="storyname" name="storyname" placeholder="Name your story" type="text">
+                <label for="storyname" id="list">{{ data }}</label>                
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="storygenre">
+                    <option disabled selected value>Select a genre</option>
+                        <option>Adventure</option>
+                        <option>Comedy</option>
+                        <option>Drama</option>
+                        <option>Romance</option>
+                        <option>Other</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit" id="submit">Create Story</button>
+        </form>
+
+    </div>
+    
+    <script>
+        let input = document.getElementById('storyname');
+        input.onkeyup = function() {
+            $.get('/checkduplicatestoryname?storyname=' + input.value, function(data) {
+                if (!data) {
+                    document.getElementById('list').innerHTML = "You have already created a story with this name.";
+                    document.getElementById('submit').addEventListener("click", add)
+                }
+                else if (data) {
+                    document.getElementById('list').innerHTML = "Storyname is available!";
+                    document.getElementById('submit').removeEventListener("click", add)                    
+                }
+            });
+        };
+
+    function add(event){
+                        event.preventDefault()
+    }
+        
+    </script>
+{% endblock %}

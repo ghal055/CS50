@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>Search for a story:</h1>
+        <form action="/search" method="post">
+            <input autocomplete="off" name="query" id="query" placeholder="Query" type="text"><br/><br/>
+            <label for "searchtype"><strong>Search type:</strong></label><br/>
+            <input type="radio" name="searchtype" value="name"> Search story names
+            <input type="radio" name="searchtype" value="desc"> Search story descriptions
+            <br/><br/>
+            <button class="btn btn-primary" type="submit" id="submit">Search</button>
+        </form>
+    </div>
+    <br/>
+    <form>
+            
+        <div class="row row6"><h2>Results:</h2></div>
+        <div class="row row6">
+            <div class="col-6 col-md-3"><h3>Title</h3></div>
+            <div class="col-6 col-md-3"><h3>Author</h3></div>
+            <div class="col-6 col-md-3"><h3>Description</h3></div>
+            <div class="col-6 col-md-3"><h3>Genre</h3></div>            
+        </div>    
+                
+        </form>
+      {% for row in searchresults %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <div class="row row6a">
+            <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+            <div class="col-sm-3"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-3">{{ row['username'] }}</div>
+            <div class="col-sm-3">{{ row['desc'] }}</div>
+            <div class="col-sm-3">{{ row['genre'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+      {% endfor %}
+
+{% endblock %}

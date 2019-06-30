@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+  <div class="container-fluid">
+    <h1>Select a story from below.</h1>
+
+
+      <div class="row row1"><h2>Adventure</h2></div>
+      <div class="row row1">
+        <div class="col-6 col-md-4"><h3>Title</h3></div>
+        <div class="col-6 col-md-4"><h3>Author</h3></div>
+        <div class="col-6 col-md-4"><h3>Description</h3></div>
+      </div>
+      {% for row in adventure %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+          <div class="row row1a">
+            <div class="col-sm-4"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-4">{{ row['username'] }}</div>
+            <div class="col-sm-4">{{ row['desc'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+      {% endfor %}
+
+      <br/>
+
+      <div class="row row2"><h2>Comedy</h2></div>
+      <div class="row row2">
+        <div class="col-6 col-md-4"><h3>Title</h3></div>
+        <div class="col-6 col-md-4"><h3>Author</h3></div>
+        <div class="col-6 col-md-4"><h3>Description</h3></div>
+      </div>
+      {% for row in comedy %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+          <div class="row row1a">
+            <div class="col-sm-4"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-4">{{ row['username'] }}</div>
+            <div class="col-sm-4">{{ row['desc'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+      {% endfor %}
+
+      <br/>
+
+      <div class="row row3"><h2>Drama</h2></div>
+      <div class="row row3">
+        <div class="col-6 col-md-4"><h3>Title</h3></div>
+        <div class="col-6 col-md-4"><h3>Author</h3></div>
+        <div class="col-6 col-md-4"><h3>Description</h3></div>
+      </div>
+      {% for row in drama %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+          <div class="row row1a">
+            <div class="col-sm-4"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-4">{{ row['username'] }}</div>
+            <div class="col-sm-4">{{ row['desc'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+      {% endfor %}
+
+      <br/>
+
+      <div class="row row4"><h2>Romance</h2></div>
+      <div class="row row4">
+        <div class="col-6 col-md-4"><h3>Title</h3></div>
+        <div class="col-6 col-md-4"><h3>Author</h3></div>
+        <div class="col-6 col-md-4"><h3>Description</h3></div>
+      </div>
+        {% for row in romance %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+          <div class="row row1a">
+            <div class="col-sm-4"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-4">{{ row['username'] }}</div>
+            <div class="col-sm-4">{{ row['desc'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+        {% endfor %}
+
+      <br/>
+
+      <div class="row row5"><h2>Other</h2></div>
+      <div class="row row5">
+        <div class="col-6 col-md-4"><h3>Title</h3></div>
+        <div class="col-6 col-md-4"><h3>Author</h3></div>
+        <div class="col-6 col-md-4"><h3>Description</h3></div>
+      </div>
+      {% for row in other %}
+        <form action="/viewer" method="post" name="{{row['storyname']}}">
+          <input type="hidden" id="FROM" name="FROM" value="BROWSER">
+          <div class="row row1a">
+            <div class="col-sm-4"><input type="submit" name="storybutton" value="{{row['storyname']}}" style="background:none; border-width:0px; color:blue; text-decoration:underline;"/></div>
+            <div class="col-sm-4">{{ row['username'] }}</div>
+            <div class="col-sm-4">{{ row['desc'] }}</div>
+            <input type="hidden" name="storyauthor" value="{{row['username']}}">
+          </div>
+        </form>
+      {% endfor %}
+
+
+        </form>
+    </div>
+
+{% endblock %}
